@@ -3,6 +3,7 @@ package pe.edu.ulima.pm.cookiemaker
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import pe.edu.ulima.pm.cookiemaker.fragments.IngredientsFragment
 import pe.edu.ulima.pm.cookiemaker.fragments.RecipesFragment
 
 class MainActivity : AppCompatActivity() {
@@ -18,9 +19,19 @@ class MainActivity : AppCompatActivity() {
         println(intentData?.getString("name"))
 
         fragments.add(RecipesFragment())
+        fragments.add(IngredientsFragment())
 
         val ft = supportFragmentManager.beginTransaction()
-        ft.add(R.id.flaContent, fragments[0])
+        ft.add(R.id.flaContent, fragments[1])
+        ft.commit()
+    }
+
+    // Para probar
+    private fun changeIngredients(){
+        println("Ingredientes")
+        val fragment = fragments[1]
+        val ft = supportFragmentManager.beginTransaction()
+        ft.replace(R.id.flaContent,fragment)
         ft.commit()
     }
 }
