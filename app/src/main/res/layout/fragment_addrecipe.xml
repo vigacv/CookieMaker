@@ -19,6 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -38,5 +39,17 @@
             android:layout_height="wrap_content"
             android:text="Ingredientes" />
     </com.google.android.material.chip.ChipGroup>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rviIngredients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chipGroup"
+        tools:itemCount="2"
+        tools:listitem="@layout/item_ingredients" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

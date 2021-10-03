@@ -11,4 +11,11 @@ class IngredientsManager {
         listIngredients.add(Ingredient(6, "Castañas"))
         return listIngredients
     }
+
+    fun getIngredientsRecipe():List<Ingredient> {
+        val listIngredients = arrayListOf<Ingredient>()
+        listIngredients.add(Ingredient(1, "Leche"))
+        listIngredients.add(Ingredient(2, "Galletas"))
+        return listIngredients
+    }
 }

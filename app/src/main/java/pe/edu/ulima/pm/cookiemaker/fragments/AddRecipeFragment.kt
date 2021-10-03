@@ -10,20 +10,20 @@ import pe.edu.ulima.pm.cookiemaker.R
 import pe.edu.ulima.pm.cookiemaker.adapter.IngredientsListAdapter
 import pe.edu.ulima.pm.cookiemaker.model.IngredientsManager
 
-class IngredientsFragment: Fragment() {
+class AddRecipeFragment: Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_ingredients, container, false)
+        return inflater.inflate(R.layout.fragment_addrecipe, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val rviIngredients = view.findViewById<RecyclerView>(R.id.rviIngredients)
-        rviIngredients.adapter = IngredientsListAdapter(IngredientsManager().getIngredients())
+        rviIngredients.adapter = IngredientsListAdapter(IngredientsManager().getIngredientsRecipe())
 
     }
 }
