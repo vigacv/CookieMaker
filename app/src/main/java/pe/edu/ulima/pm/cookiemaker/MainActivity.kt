@@ -7,7 +7,7 @@ import pe.edu.ulima.pm.cookiemaker.fragments.AddRecipeFragment
 import pe.edu.ulima.pm.cookiemaker.fragments.IngredientsFragment
 import pe.edu.ulima.pm.cookiemaker.fragments.RecipesFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), RecipesFragment.OnAddClicked {
 
     private val fragments = mutableListOf<Fragment>()
 
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         fragments.add(AddRecipeFragment())
 
         val ft = supportFragmentManager.beginTransaction()
-        ft.add(R.id.flaContent, fragments[2])
+        ft.add(R.id.flaContent, fragments[0])
         ft.commit()
     }
 
@@ -34,6 +34,14 @@ class MainActivity : AppCompatActivity() {
         val fragment = fragments[1]
         val ft = supportFragmentManager.beginTransaction()
         ft.replace(R.id.flaContent,fragment)
+        ft.commit()
+    }
+
+    override fun onClick() {
+        //Cambiar a fragment agregar recetas
+        val ft = supportFragmentManager.beginTransaction()
+        ft.replace(R.id.flaContent, fragments[2])
+
         ft.commit()
     }
 }
