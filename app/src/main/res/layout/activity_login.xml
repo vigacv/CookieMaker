@@ -12,12 +12,12 @@
         android:layout_marginBottom="50dp"
         android:text="Cookie Maker"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        app:layout_constraintBottom_toTopOf="@+id/tfiName"
+        app:layout_constraintBottom_toTopOf="@+id/tinName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tfiName"
+        android:id="@+id/tinName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
