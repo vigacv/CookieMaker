@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import pe.edu.ulima.pm.cookiemaker.fragments.AddRecipeFragment
 import pe.edu.ulima.pm.cookiemaker.fragments.IngredientsFragment
 import pe.edu.ulima.pm.cookiemaker.fragments.RecipesFragment
+import pe.edu.ulima.pm.cookiemaker.fragments.ViewRecipeFragment
+import pe.edu.ulima.pm.cookiemaker.model.Recipe
 
-class MainActivity : AppCompatActivity(), RecipesFragment.OnAddClicked {
+class MainActivity : AppCompatActivity(), RecipesFragment.OnAddClicked{
 
     private val fragments = mutableListOf<Fragment>()
 
@@ -22,6 +24,7 @@ class MainActivity : AppCompatActivity(), RecipesFragment.OnAddClicked {
         fragments.add(RecipesFragment())
         fragments.add(IngredientsFragment())
         fragments.add(AddRecipeFragment())
+        fragments.add(ViewRecipeFragment())
 
         val ft = supportFragmentManager.beginTransaction()
         ft.add(R.id.flaContent, fragments[0])
@@ -37,11 +40,24 @@ class MainActivity : AppCompatActivity(), RecipesFragment.OnAddClicked {
         ft.commit()
     }
 
-    override fun onClick() {
+    override fun onAgregarRecetaClick() {
         //Cambiar a fragment agregar recetas
         val ft = supportFragmentManager.beginTransaction()
         ft.replace(R.id.flaContent, fragments[2])
 
         ft.commit()
     }
+
+    override fun onRecipeItemClick(recipe: Recipe) {
+        val fragment = fragments[3]
+        var args: Bundle = Bundle()
+        args.putSerializable("recipe", recipe)
+        fragment.arguments = args
+
+        val ft = supportFragmentManager.beginTransaction()
+        ft.replace(R.id.flaContent, fragment)
+
+        ft.commit()
+    }
+
 }
