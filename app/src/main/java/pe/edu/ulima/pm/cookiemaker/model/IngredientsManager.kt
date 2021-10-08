@@ -12,10 +12,17 @@ class IngredientsManager {
         return listIngredients
     }
 
+    private var currentListIngredients = arrayListOf<Ingredient>()
+
     fun getIngredientsRecipe():List<Ingredient> {
-        val listIngredients = arrayListOf<Ingredient>()
+        val listIngredients = currentListIngredients
         listIngredients.add(Ingredient(1, "Leche"))
         listIngredients.add(Ingredient(2, "Galletas"))
         return listIngredients
+    }
+
+    fun addIngredientToRecipe(name:String){
+        val newId = currentListIngredients.size.toLong()+1
+        currentListIngredients.add(Ingredient(newId, name))
     }
 }

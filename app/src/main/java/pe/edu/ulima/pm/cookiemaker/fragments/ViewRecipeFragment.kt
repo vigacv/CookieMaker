@@ -11,12 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import pe.edu.ulima.pm.cookiemaker.R
 import pe.edu.ulima.pm.cookiemaker.adapter.IngredientsListAdapter
+import pe.edu.ulima.pm.cookiemaker.model.Ingredient
 import pe.edu.ulima.pm.cookiemaker.model.IngredientsManager
 import pe.edu.ulima.pm.cookiemaker.model.Recipe
 
 class ViewRecipeFragment(): Fragment() {
-
-
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -24,6 +23,7 @@ class ViewRecipeFragment(): Fragment() {
     }
 
     private var recipe: Recipe? = null
+    private var ingredientsList: List<Ingredient>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,9 +40,8 @@ class ViewRecipeFragment(): Fragment() {
         val tviRecipeDetailsTiltle = view.findViewById<TextView>(R.id.tviRecipeDetailsTiltle)
         val rviRecipeDetailsIngredients = view.findViewById<RecyclerView>(R.id.rviRecipeDetailsIngredients)
         tviRecipeDetailsTiltle.text = recipe?.name
-
-        val adapter = recipe?.ingredients?.let { IngredientsListAdapter(it) }
-        rviRecipeDetailsIngredients.adapter = adapter
-
+        rviRecipeDetailsIngredients.adapter = IngredientsListAdapter(recipe?.ingredients!!){
+            Log.i("View Recipe Fragment","Se hizo click")
+        }
     }
 }

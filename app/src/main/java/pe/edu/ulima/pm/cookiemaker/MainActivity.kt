@@ -7,9 +7,13 @@ import pe.edu.ulima.pm.cookiemaker.fragments.AddRecipeFragment
 import pe.edu.ulima.pm.cookiemaker.fragments.IngredientsFragment
 import pe.edu.ulima.pm.cookiemaker.fragments.RecipesFragment
 import pe.edu.ulima.pm.cookiemaker.fragments.ViewRecipeFragment
+import pe.edu.ulima.pm.cookiemaker.model.Ingredient
 import pe.edu.ulima.pm.cookiemaker.model.Recipe
 
-class MainActivity : AppCompatActivity(), RecipesFragment.OnAddClicked{
+class MainActivity : AppCompatActivity(),
+    RecipesFragment.OnAddClicked,
+    AddRecipeFragment.OnAddIngredientSelectedListener,
+    IngredientsFragment.OnIngredientsSelectedListener {
 
     private val fragments = mutableListOf<Fragment>()
 
@@ -21,26 +25,17 @@ class MainActivity : AppCompatActivity(), RecipesFragment.OnAddClicked{
 
         println(intentData?.getString("name"))
 
-        fragments.add(RecipesFragment())
-        fragments.add(IngredientsFragment())
-        fragments.add(AddRecipeFragment())
-        fragments.add(ViewRecipeFragment())
+        fragments.add(RecipesFragment()) //0
+        fragments.add(IngredientsFragment()) //1
+        fragments.add(AddRecipeFragment()) //2
+        fragments.add(ViewRecipeFragment()) //3
 
         val ft = supportFragmentManager.beginTransaction()
         ft.add(R.id.flaContent, fragments[0])
         ft.commit()
     }
 
-    // Para probar
-    private fun changeIngredients(){
-        println("Ingredientes")
-        val fragment = fragments[1]
-        val ft = supportFragmentManager.beginTransaction()
-        ft.replace(R.id.flaContent,fragment)
-        ft.commit()
-    }
-
-    override fun onAgregarRecetaClick() {
+    override fun onAddRecipeClick() {
         //Cambiar a fragment agregar recetas
         val ft = supportFragmentManager.beginTransaction()
         ft.replace(R.id.flaContent, fragments[2])
@@ -58,6 +53,20 @@ class MainActivity : AppCompatActivity(), RecipesFragment.OnAddClicked{
         ft.replace(R.id.flaContent, fragment)
 
         ft.commit()
+    }
+
+    override fun onIngredientsClick(ingredients: ArrayList<Ingredient>){
+        val fragment = fragments[1]
+        val args = Bundle()
+        args.putSerializable("ingredients", ingredients)
+        fragment.arguments = args
+        val ft = supportFragmentManager.beginTransaction()
+        ft.replace(R.id.flaContent,fragment)
+        ft.commit()
+    }
+
+    override fun onIngredient() {
+        println("-->")
     }
 
 }
