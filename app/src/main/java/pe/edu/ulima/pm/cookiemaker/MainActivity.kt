@@ -1,8 +1,10 @@
 package pe.edu.ulima.pm.cookiemaker
 
+import android.app.PendingIntent.getActivity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import pe.edu.ulima.pm.cookiemaker.fragments.AddRecipeFragment
 import pe.edu.ulima.pm.cookiemaker.fragments.IngredientsFragment
 import pe.edu.ulima.pm.cookiemaker.fragments.RecipesFragment
@@ -48,7 +50,7 @@ class MainActivity : AppCompatActivity(),
         fragment.arguments = args
 
         val ft = supportFragmentManager.beginTransaction()
-        ft.replace(R.id.flaContent, fragment)
+        ft.replace(R.id.flaContent, fragment).addToBackStack("recipeList")
 
         ft.commit()
     }
@@ -59,19 +61,22 @@ class MainActivity : AppCompatActivity(),
         args.putSerializable("ingredients", ingredients)
         args.putSerializable("nameRecipe", name)
         fragment.arguments = args
-        val ft = supportFragmentManager.beginTransaction()
+        val ft = supportFragmentManager.beginTransaction().addToBackStack("addRecipeToIngredients")
         ft.replace(R.id.flaContent,fragment)
         ft.commit()
     }
 
     override fun onAddRecipeClick() {
         val ft = supportFragmentManager.beginTransaction()
-        ft.replace(R.id.flaContent, fragments[2])
+        ft.replace(R.id.flaContent, fragments[2]).addToBackStack("recipeList")
 
         ft.commit()
     }
 
     override fun onIngredient(ingredients: ArrayList<Ingredient>, name:String) {
+        if(supportFragmentManager.backStackEntryCount>1){
+            supportFragmentManager.popBackStack()
+        }
         val fragment = fragments[2]
         val args = Bundle()
         args.putSerializable("ingredients", ingredients)
@@ -83,6 +88,12 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun onSaveClick(ingredients: ArrayList<Ingredient>, name:String) {
+
+        val fm: FragmentManager = supportFragmentManager
+        for (i in 0 until fm.backStackEntryCount) {
+            fm.popBackStack()
+        }
+
         recipeMain.addRecipe(ingredients,name,nameUser!!)
         val fragment = fragments[0]
         val args = Bundle()

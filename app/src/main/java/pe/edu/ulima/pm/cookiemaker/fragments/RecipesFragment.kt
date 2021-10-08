@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import pe.edu.ulima.pm.cookiemaker.R
 import pe.edu.ulima.pm.cookiemaker.adapter.RecipesListAdapter
 import pe.edu.ulima.pm.cookiemaker.model.Ingredient
@@ -57,7 +58,7 @@ class RecipesFragment(): Fragment(){
             }
         })
 
-        view.findViewById<Button>(R.id.btnAgregar).setOnClickListener{_: View ->
+        view.findViewById<FloatingActionButton>(R.id.btnAgregar).setOnClickListener{_: View ->
             listener?.onAddRecipeClick()
         }
     }
