@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="#5CFFBB33">
 
     <ImageView
         android:id="@+id/iviRecipe"
@@ -21,8 +22,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:background="#7599CC00"
         android:text="Receta"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#000000"
+        app:drawableTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -33,6 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
+        android:background="#7299CC00"
         android:text="Username"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintEnd_toEndOf="parent"
