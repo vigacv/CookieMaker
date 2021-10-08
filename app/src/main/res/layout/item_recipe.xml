@@ -7,13 +7,14 @@
 
     <ImageView
         android:id="@+id/iviRecipe"
-        android:layout_width="413dp"
-        android:layout_height="299dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/galleta1"
-        tools:layout_editor_absoluteX="-2dp" />
+        app:srcCompat="@drawable/galleta1" />
 
     <TextView
         android:id="@+id/tviRecipeName"

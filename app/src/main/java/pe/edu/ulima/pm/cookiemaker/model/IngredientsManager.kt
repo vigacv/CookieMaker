@@ -1,6 +1,7 @@
 package pe.edu.ulima.pm.cookiemaker.model
 
 class IngredientsManager {
+
     fun getIngredients():List<Ingredient> {
         val listIngredients = arrayListOf<Ingredient>()
         listIngredients.add(Ingredient(1, "Leche"))
@@ -12,17 +13,14 @@ class IngredientsManager {
         return listIngredients
     }
 
-    private var currentListIngredients = arrayListOf<Ingredient>()
+    //private var currentListIngredients = arrayListOf<Ingredient>()
 
-    fun getIngredientsRecipe():List<Ingredient> {
-        val listIngredients = currentListIngredients
-        listIngredients.add(Ingredient(1, "Leche"))
-        listIngredients.add(Ingredient(2, "Galletas"))
-        return listIngredients
+    fun getIngredientsRecipe(ingredients: ArrayList<Ingredient>):List<Ingredient> {
+        return ingredients
     }
 
-    fun addIngredientToRecipe(name:String){
-        val newId = currentListIngredients.size.toLong()+1
-        currentListIngredients.add(Ingredient(newId, name))
+    fun addIngredientToRecipe(ingredients: ArrayList<Ingredient>, name:String){
+        val newId = ingredients.size.toLong()+1
+        ingredients.add(Ingredient(newId, name))
     }
 }
