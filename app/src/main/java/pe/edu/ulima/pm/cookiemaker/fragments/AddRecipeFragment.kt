@@ -9,8 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.textfield.TextInputLayout
 import pe.edu.ulima.pm.cookiemaker.MainActivity
 import pe.edu.ulima.pm.cookiemaker.R
 import pe.edu.ulima.pm.cookiemaker.adapter.IngredientsListAdapter
@@ -48,25 +50,27 @@ class AddRecipeFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val eteRecipeName = view.findViewById<TextView>(R.id.eteRecipeName)
+        val eteRecipeName = view.findViewById<TextInputLayout>(R.id.eteRecipeName)
         val rviIngredients = view.findViewById<RecyclerView>(R.id.rviIngredients)
-        eteRecipeName.setText(nameRecipe)
 
         if (ingredientsList != null) {
+            eteRecipeName.editText?.setText(nameRecipe)
             rviIngredients.adapter = IngredientsListAdapter(IngredientsManager().getIngredientsRecipe(ingredientsList!!)){ingredient:Ingredient ->
             }
+        }else{
+            eteRecipeName.editText?.setText("")
         }
 
         view.findViewById<Button>(R.id.btnIngredients).setOnClickListener { _: View ->
             if (ingredientsList == null) {ingredientsList = ArrayList<Ingredient>()}
-            listener?.onIngredientsClick(ingredientsList!!,eteRecipeName.text.toString())
+            listener?.onIngredientsClick(ingredientsList!!,eteRecipeName.editText?.text.toString())
         }
 
         view.findViewById<Button>(R.id.btnSave).setOnClickListener {_:View ->
             if ( ingredientsList==null){
-                println("No hay ingredientes")
+                Toast.makeText(getActivity(), "Debe ingresar por lo menos un ingrediente", Toast.LENGTH_LONG).show()
             }else{
-                listener?.onSaveClick(ingredientsList!!,eteRecipeName.text.toString())
+                listener?.onSaveClick(ingredientsList!!,eteRecipeName.editText?.text.toString())
             }
         }
 

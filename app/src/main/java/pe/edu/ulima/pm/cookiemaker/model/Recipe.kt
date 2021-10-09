@@ -6,6 +6,5 @@ class Recipe(val id: Long,
              val name: String,
              val creator: String,
              val ingredients: List<Ingredient>,
-             val imageId: Int): Serializable{
-
-}
+             val imageId: Int):Serializable{
+ }

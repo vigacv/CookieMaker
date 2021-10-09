@@ -1,6 +1,10 @@
 package pe.edu.ulima.pm.cookiemaker.model
 
-data class Ingredient(
+import java.io.Serializable
+
+class Ingredient(
     val id:Long,
     val name:String
-)
+): Serializable {
+
+}
