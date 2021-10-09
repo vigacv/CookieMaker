@@ -21,7 +21,7 @@ import pe.edu.ulima.pm.cookiemaker.model.RecipeManager
 *
 * Autores:
 * - Gabo
-* - Andy
+* - Nyo
 *
 * */
 class MainActivity : AppCompatActivity(),
@@ -77,7 +77,6 @@ class MainActivity : AppCompatActivity(),
         val intentData: Bundle? = intent.getBundleExtra("data")
         nameUser = intentData?.getString("name")
         recipesList = intentData?.getSerializable("recipeMain") as? ArrayList<Recipe>
-        println("Main:"+recipesList?.size)
         if (recipesList != null) {
             recipeMain.setRecipeArray(recipesList!!)
         }
