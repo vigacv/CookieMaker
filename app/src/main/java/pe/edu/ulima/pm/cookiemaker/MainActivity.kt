@@ -30,9 +30,21 @@ class MainActivity : AppCompatActivity(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTitle("Recetas")
         onBackPressedDispatcher.addCallback(this, object :
             OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
+                if(fragments[0].isVisible()){
+                    setTitle("Cookie Maker")
+                }else if(fragments[1].isVisible){
+                    setTitle("Nueva Receta")
+                }else if(fragments[2].isVisible){
+                    setTitle("Recetas")
+                }else if(fragments[3].isVisible){
+                    setTitle("Recetas")
+                }else{
+                    setTitle("Cookie Maker")
+                }
                 if(fragments[0].isVisible()){
                     val intent = Intent(this@MainActivity, LoginActivity::class.java)
                     val bundle = Bundle()
@@ -73,6 +85,7 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun onRecipeItemClick(recipe: Recipe) {
+        setTitle("Vista Receta")
         val fragment = fragments[3]
         var args: Bundle = Bundle()
         args.putSerializable("recipe", recipe)
@@ -85,6 +98,7 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun onIngredientsClick(ingredients: ArrayList<Ingredient>, name:String){
+        setTitle("Agregar Ingrediente")
         val fragment = fragments[1]
         val args = Bundle()
         args.putSerializable("ingredients", ingredients)
@@ -96,6 +110,7 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun onAddRecipeClick() {
+        setTitle("Nueva Receta")
         val fragment = fragments[2]
         val args = Bundle()
         args.putSerializable("ingredients",null)
@@ -107,6 +122,7 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun onIngredient(ingredients: ArrayList<Ingredient>, name:String) {
+        setTitle("Nueva Receta")
         if(supportFragmentManager.backStackEntryCount>1){
             supportFragmentManager.popBackStack()
         }
@@ -121,7 +137,7 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun onSaveClick(ingredients: ArrayList<Ingredient>, name:String) {
-
+        setTitle("Recetas")
         val fm: FragmentManager = supportFragmentManager
         for (i in 0 until fm.backStackEntryCount) {
             fm.popBackStack()

@@ -69,6 +69,8 @@ class AddRecipeFragment: Fragment() {
         view.findViewById<Button>(R.id.btnSave).setOnClickListener {_:View ->
             if ( ingredientsList==null){
                 Toast.makeText(getActivity(), "Debe ingresar por lo menos un ingrediente", Toast.LENGTH_LONG).show()
+            }else if(eteRecipeName?.editText?.text!!.isBlank()) {
+                Toast.makeText(getActivity(), "Debe ingresar el nombre de la receta", Toast.LENGTH_LONG).show()
             }else{
                 listener?.onSaveClick(ingredientsList!!,eteRecipeName.editText?.text.toString())
             }
