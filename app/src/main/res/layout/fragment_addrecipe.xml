@@ -51,12 +51,18 @@
             android:id="@+id/btnSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:backgroundTint="#F4D33B"
+            app:cornerRadius="20dp"
             android:text="Guardar" />
 
         <Button
             android:id="@+id/btnIngredients"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:backgroundTint="#F4D33B"
+            app:cornerRadius="20dp"
             android:text="Ingredientes" />
     </com.google.android.material.chip.ChipGroup>
 
