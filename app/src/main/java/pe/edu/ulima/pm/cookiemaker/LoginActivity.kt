@@ -8,10 +8,12 @@ import android.view.Window
 import android.widget.Button
 import android.widget.Toast
 import android.widget.Toolbar
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputLayout
 import pe.edu.ulima.pm.cookiemaker.model.Recipe
 import pe.edu.ulima.pm.cookiemaker.model.RecipeManager
+import kotlin.system.exitProcess
 
 class LoginActivity: AppCompatActivity() {
 
@@ -21,7 +23,17 @@ class LoginActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        setTitle("Cookie Maker")
+        title = "Cookie Maker"
+
+        onBackPressedDispatcher
+
+        onBackPressedDispatcher.addCallback(this, object :
+            OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                finishAffinity()
+                exitProcess(0)
+            }
+        })
 
         tinName = findViewById(R.id.tinName)
 
@@ -38,7 +50,6 @@ class LoginActivity: AppCompatActivity() {
                 bundle.putSerializable("recipeMain",recipesList)
                 intent.putExtra("data", bundle)
                 startActivity(intent)
-                finish()
             }
         }
     }

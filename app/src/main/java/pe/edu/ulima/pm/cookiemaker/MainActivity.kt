@@ -30,28 +30,33 @@ class MainActivity : AppCompatActivity(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTitle("Recetas")
+        title = "Recetas"
         onBackPressedDispatcher.addCallback(this, object :
             OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                if(fragments[0].isVisible()){
-                    setTitle("Cookie Maker")
-                }else if(fragments[1].isVisible){
-                    setTitle("Nueva Receta")
-                }else if(fragments[2].isVisible){
-                    setTitle("Recetas")
-                }else if(fragments[3].isVisible){
-                    setTitle("Recetas")
-                }else{
-                    setTitle("Cookie Maker")
+                when {
+                    fragments[0].isVisible -> {
+                        title = "Cookie Maker"
+                    }
+                    fragments[1].isVisible -> {
+                        title = "Nueva Receta"
+                    }
+                    fragments[2].isVisible -> {
+                        title = "Recetas"
+                    }
+                    fragments[3].isVisible -> {
+                        title = "Recetas"
+                    }
+                    else -> {
+                        title = "Cookie Maker"
+                    }
                 }
-                if(fragments[0].isVisible()){
+                if(fragments[0].isVisible){
                     val intent = Intent(this@MainActivity, LoginActivity::class.java)
                     val bundle = Bundle()
                     bundle.putSerializable("recipeMain",recipeMain.getRecipesArray())
                     intent.putExtra("data",bundle)
                     startActivity(intent)
-                    finish()
                 }else{
                     isEnabled = false
                     onBackPressed()
