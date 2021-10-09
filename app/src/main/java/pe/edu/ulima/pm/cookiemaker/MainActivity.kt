@@ -17,6 +17,13 @@ import pe.edu.ulima.pm.cookiemaker.model.Ingredient
 import pe.edu.ulima.pm.cookiemaker.model.Recipe
 import pe.edu.ulima.pm.cookiemaker.model.RecipeManager
 
+/*
+*
+* Autores:
+* - Gabo
+* - Andy
+*
+* */
 class MainActivity : AppCompatActivity(),
     RecipesFragment.OnAddClicked,
     AddRecipeFragment.OnAddIngredientSelectedListener,
